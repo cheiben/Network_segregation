@@ -1,7 +1,3 @@
-# Azure Network Segregation & Monitoring Lab
-# This script creates a proper network segregation environment with basic monitoring
-# Save as deploy-secure-network.ps1
-
 # ---------- Variables ----------
 $resourceGroup = "SecureNetwork-Lab-RG"
 $location = "eastus"
@@ -111,7 +107,7 @@ az network watcher flow-log create --location $location --name flow-log-mgmt --r
 # ---------- Deploy VMs for Demo (Optional) ----------
 # Uncomment and modify these if you want to deploy actual VMs in each subnet
 
-<# 
+
 # Web VM
 az vm create --resource-group $resourceGroup --name WebVM --image Ubuntu2204 --admin-username azureuser --generate-ssh-keys \
     --vnet-name $vnetName --subnet $webSubnetName --public-ip-address WebVM-pip --nsg ""
@@ -127,7 +123,6 @@ az vm create --resource-group $resourceGroup --name DataVM --image MicrosoftSQLS
 # Management VM
 az vm create --resource-group $resourceGroup --name MgmtVM --image Win2019Datacenter --admin-username azureuser \
     --admin-password "ComplexP@ssw0rd123!" --vnet-name $vnetName --subnet $mgmtSubnetName --public-ip-address MgmtVM-pip --nsg ""
-#>
 
 # ---------- Create basic monitoring dashboard ----------
 Write-Host "Network segregation lab successfully deployed with monitoring enabled!" -ForegroundColor Green
