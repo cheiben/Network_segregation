@@ -84,8 +84,11 @@ AzureNetworkAnalytics_CL
 When you're done with the lab, clean up resources to avoid unnecessary charges:
 
 ```bash
-# Delete the entire resource group
-az group delete --name SecureNetwork-Lab-RG --yes
+# Make the script executable
+chmod +x cleanUp.sh
+
+# Run the script
+./cleanUp.sh
 ```
 
 ## Security Benefits
