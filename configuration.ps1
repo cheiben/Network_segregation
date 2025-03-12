@@ -123,15 +123,3 @@ az vm create --resource-group $resourceGroup --name DataVM --image MicrosoftSQLS
 # Management VM
 az vm create --resource-group $resourceGroup --name MgmtVM --image Win2019Datacenter --admin-username azureuser \
     --admin-password "ComplexP@ssw0rd123!" --vnet-name $vnetName --subnet $mgmtSubnetName --public-ip-address MgmtVM-pip --nsg ""
-
-# ---------- Create basic monitoring dashboard ----------
-Write-Host "Network segregation lab successfully deployed with monitoring enabled!" -ForegroundColor Green
-Write-Host "Next steps:" -ForegroundColor Yellow
-Write-Host "1. Update IP addresses in Management NSG to your actual trusted IPs" -ForegroundColor Yellow
-Write-Host "2. Run Network Watcher tests between subnets to verify security rules" -ForegroundColor Yellow
-Write-Host "3. Set up Azure Monitor alerts for suspicious activities" -ForegroundColor Yellow
-Write-Host "4. Deploy sample VMs if desired by uncommenting the VM creation section" -ForegroundColor Yellow
-
-# Sample queries for Log Analytics
-Write-Host "Sample KQL query for denied connections:" -ForegroundColor Cyan
-Write-Host "AzureNetworkAnalytics_CL | where FlowType_s == 'Deny' | project TimeGenerated, NSGRule_s, FlowDirection_s, SrcIP_s, DestIP_s" -ForegroundColor Cyan
