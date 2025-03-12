@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Azure Network Segregation & Monitoring Lab
-# This script creates a proper network segregation environment with basic monitoring
-# Save as deploy-secure-network.sh
-
 # ---------- Variables ----------
 resourceGroup="SecureNetwork-Lab-RG"
 location="eastus"
@@ -125,16 +121,3 @@ az vm create --resource-group $resourceGroup --name DataVM --image MicrosoftSQLS
 # Management VM
 az vm create --resource-group $resourceGroup --name MgmtVM --image Win2019Datacenter --admin-username azureuser \
     --admin-password "ComplexP@ssw0rd123!" --vnet-name $vnetName --subnet $mgmtSubnetName --public-ip-address MgmtVM-pip --nsg ""
-
-
-# ---------- Create basic monitoring dashboard ----------
-echo -e "Network segregation lab successfully deployed with monitoring enabled!" -ForegroundColor Green
-echo -e "Next steps:" -ForegroundColor Yellow
-echo -e "1. Update IP addresses in Management NSG to your actual trusted IPs" -ForegroundColor Yellow
-echo -e "2. Run Network Watcher tests between subnets to verify security rules" -ForegroundColor Yellow
-echo -e "3. Set up Azure Monitor alerts for suspicious activities" -ForegroundColor Yellow
-echo -e "4. Deploy sample VMs if desired by uncommenting the VM creation section" -ForegroundColor Yellow
-
-# Sample queries for Log Analytics
-echo -e "Sample KQL query for denied connections:" -ForegroundColor Cyan
-echo -e "AzureNetworkAnalytics_CL | where FlowType_s == 'Deny' | project TimeGenerated, NSGRule_s, FlowDirection_s, SrcIP_s, DestIP_s" -ForegroundColor Cyan
