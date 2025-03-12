@@ -67,7 +67,7 @@ az network nsg rule create --resource-group ${resourceGroup} --nsg-name ${dataNs
 # 4. Management NSG - Highly restricted, only allows RDP/SSH from authorized sources
 echo -e "Creating and configuring Management Tier NSG."
 az network nsg create --resource-group ${resourceGroup} --name ${mgmtNsgName}
-az network nsg rule create --resource-group ${resourceGroup} --nsg-name ${mgmtNsgName} --name "Allow-RDP-From-Trusted" --priority 100 --direction Inbound --access Allow --protocol Tcp --source-address-prefixes "76.151.38.187/32" --source-port-ranges '*' --destination-address-prefixes '*' --destination-port-ranges 3389
+az network nsg rule create --resource-group ${resourceGroup} --nsg-name ${mgmtNsgName} --name "Allow-RDP-From-Trusted" --priority 100 --direction Inbound --access Allow --protocol Tcp --source-address-prefixes " ADD YOUR IP ADDRESS /32" --source-port-ranges '*' --destination-address-prefixes '*' --destination-port-ranges 3389
 az network nsg rule create --resource-group ${resourceGroup} --nsg-name ${mgmtNsgName} --
 
 # ---------- Create subnets and associate NSGs ----------
